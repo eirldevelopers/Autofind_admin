@@ -1,0 +1,42 @@
+CREATE TABLE IF NOT EXISTS `admin_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(250) NOT NULL,
+  `mobile_no` varchar(10) NOT NULL,
+  `username` varchar(250) NOT NULL DEFAULT '',
+  `password` varchar(250) NOT NULL DEFAULT '',
+  `role` int(1) NOT NULL,
+  `active` int(1) NOT NULL,
+  `registered_on` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `active` (`active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `menus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu` varchar(150) NOT NULL,
+  `link` varchar(150) NOT NULL DEFAULT '#',
+  `pid` int(11) NOT NULL,
+  `m_order` decimal(4,2) NOT NULL,
+  `level` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `mper` (
+  `uid` int(11) NOT NULL,
+  `mid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `settings` (
+  `skey` varchar(150) NOT NULL,
+  `isnum` tinyint(1) NOT NULL,
+  `vnumeric` decimal(10,2) NOT NULL,
+  `vstring` varchar(250) NOT NULL,
+  PRIMARY KEY (`skey`),
+  UNIQUE KEY `skey` (`skey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `settings` (`skey`, `isnum`, `vnumeric`, `vstring`) VALUES
+('administrator_password', 0, '0.00', 'c4ca4238a0b923820dcc509a6f75849b'),
+('administrator_username', 0, '0.00', 'administrator'),
+('superuser_password', 0, '0.00', 'c4ca4238a0b923820dcc509a6f75849b'),
+('superuser_username', 0, '0.00', 'superuser');
